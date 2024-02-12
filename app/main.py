@@ -1,4 +1,5 @@
-from fastapi import BackgroundTasks, Request
+from typing import Dict, Any
+from fastapi import BackgroundTasks, Body
 
 from app.odoo.odoo import OdooClient
 from app.hooks.hooks import Hooks
@@ -21,10 +22,7 @@ def webhook_list():
     return {"options": elements}
 
 @app.post("/hook/{hook_type}", tags=["Hooks"])
-async def webhook_do(hook_type: str, request: Request, background_tasks: BackgroundTasks):
-    body = await request.json()
-
+async def webhook_do(background_tasks: BackgroundTasks, hook_type: str, body: Dict[str, Any] = Body(...)):
     f = hooks.get(hook_type)
     background_tasks.add_task(f, body)
-
     return {"hook_type": hook_type}
