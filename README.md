@@ -2,7 +2,20 @@
 
 > gateway for webhooks between odoo and other applications
 
-## docs
+## web
+
+> setup
+
+```sh
+python3 -m venv venv
+```
+
+> run
+
+```sh
+source venv/bin/activate
+./run.sh
+```
 
 ### httpx
 
@@ -17,7 +30,18 @@
 [source](https://github.com/OCA/odoorpc)
 
 
-## scripts
+## cli
+
+> run
+
+```sh
+source venv/bin/activate
+python cli.py --help
+```
+
+### click
+
+[source](https://click.palletsprojects.com/en/8.1.x/)
 
 ### rich
 

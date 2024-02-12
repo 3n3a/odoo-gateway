@@ -57,7 +57,9 @@ class OdooClient:
     
     def list_models(self):
         model_ids = self.Model.search([])
-        return self.Model.browse(model_ids)
+        models = self.Model.browse(model_ids)
+        return models
+
 
     def create_todo(self, name, description):
         todos = self.Todo.create({
