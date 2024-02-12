@@ -15,3 +15,10 @@
 ### odoorpc
 
 [source](https://github.com/OCA/odoorpc)
+
+
+## scripts
+
+### rich
+
+[source](https://rich.readthedocs.io/en/stable/tables.html)
