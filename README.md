@@ -2,6 +2,21 @@
 
 > gateway for webhooks between odoo and other applications
 
+## env
+
+> setup
+
+```sh
+cp env.template .env
+echo "Fill out '.env'"
+```
+
+> additional env variables
+
+| variable | description | value example |
+| --- | --- | --- |
+| `WEBHOOK_TASK_ASSIGNEE_OVERRIDE_ID` | User ID used as assignee when creating tasks via "fb_todo". *Value*: Integer | `2` |
+
 ## web
 
 > setup

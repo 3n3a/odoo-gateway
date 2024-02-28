@@ -39,6 +39,7 @@ class OdooClient:
         ####### Model Classes ########
         self.Todo = self.conn.env['project.task']
         self.Model = self.conn.env['ir.model']
+        self.User = self.conn.env['res.users']
 
     def _debug_env(self):
         print(self.conn.env)
@@ -55,15 +56,26 @@ class OdooClient:
         r = self.conn.execute('res.users', 'read', [user_id])
         return r
     
+    def list_users(self):
+        user_ids = self.User.search([])
+        users = self.User.browse(user_ids)
+        return users
+    
+    def get_user_by_login(self, email):
+        users = self.User.search(['login', '=', email])
+        if len(users) > 0:
+            return users[0] # return only first
+        return None
+    
     def list_models(self):
         model_ids = self.Model.search([])
         models = self.Model.browse(model_ids)
         return models
 
-    def create_todo(self, name, description):
+    def create_todo(self, name, description, assignee_id):
         todos = self.Todo.create({
             'name': name,
-            'user_ids': [self.conn.env.user.id],
+            'user_ids': [assignee_id],
             'description': description
         })
         return todos
